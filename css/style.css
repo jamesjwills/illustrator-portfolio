@@ -1,0 +1,186 @@
+
+body {
+    font-size: 20px;
+    font-family: 'Inconsolata', sans-serif;
+    margin: 0;
+    padding: 200px 0 0 0;
+    box-sizing: border-box; /*property means that the width you specify includes both the content, padding, and border.*/
+}
+
+header {
+    height: 200px; /*Fixed height for header which determines size of child logo*/ 
+    background-color: #ffffff;
+    padding: 0px 100px;
+    display: flex; /*Specifies that the header should use Flexbox layout*/
+    flex-direction: row; /*Default value*/
+    justify-content: space-between; /*Aligns the child elements along the main axis (horizontal axis in this case) with space distributed between them. This pushes the child elements as far as possible to the left and right edges of the header, creating space between them*/
+    align-items: center; /* Aligns the child elements along the cross axis (vertical axis in this case) at the center. This centers the child elements vertically within the fixed height of the header*/
+    box-sizing: border-box;
+    /*comment out below to remove floating header*/
+    position: fixed; /* Fixed positioning */
+    width: 100%; /* Take up the full width of the viewport */
+    top: 0; /* Stick to the top */
+    z-index: 1000; /* Set a high z-index to ensure it stays above other elements */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for a subtle effect */
+    
+}
+
+.logo-container {
+    height: 100%; /*Sets height of logo container to be full height of parent (header)*/
+}
+
+.logo-container img {
+    height: 100%; /*Sets image to fill height of its parent (logo container)*/
+}
+
+/*Attempt to get the handwriting to highlight in the background colour*/
+/*
+.logo-container img:hover {
+    mix-blend-mode: difference;
+    filter: hue-rotate(34deg);
+}
+*/
+nav {
+    display: flex;
+    flex-direction: row; /* Default value */
+    justify-content: flex-start; /* Default value. aligns the items at the start of the flex container*/
+    align-items: stretch; /* Default value. stretches the items to fill the container along the cross-axis (vertically for a row layout*/
+    gap: 20px;
+}
+
+nav a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #c98989; /* Change to your desired hover color */
+}
+
+main {
+    background-color: #c9898969;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /*Specifies a grid with three columns, each taking up an equal fraction of the available space (1fr means 1 fraction). This determines the layout of the columns in main*/
+    gap: 50px; /*Sets the gap between the columns*/
+    padding: 100px 100px; /*sets the padding on tblr*/
+}
+
+main div {
+    display: grid;
+    grid-template-columns: repeat(1,1fr); /*Specifies a grid with one column, taking up the entire available space. This determines the layout of the columns in main div*/
+    gap: 50px; /*sets gap between images with in the column to be 50px*/
+    align-content: start; /*sets the distribution of the images with in the column to start at the top*/
+}
+
+.art-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px; /* Adjust this value to control the amount of rounding */
+}
+
+.art-box img {
+    width: 100%; /*sets the width to be that of the parent (in this case art-box*/
+    height: auto; /*Maintains the aspect ratio of the image, allowing it to scale proportionally with its width.*/
+    transition: transform 0.3s;
+}
+
+.art-box .description-box {
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: bottom 0.3s;
+}
+
+.art-box:hover .description-box {
+    bottom: 0;
+}
+
+
+.art-box:hover img {
+    transform: scale(1.1);
+}
+/*
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.art-box:hover .overlay {
+    opacity: 1;
+}
+*/
+footer {
+    background-color: #ffffff;
+    padding: 20px 100px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-copyright a {
+    font-size: 1rem;
+    color: #000000;
+    margin: 0 10px;
+}
+
+.footer-socials a {
+    font-size: 2rem;
+    color: #000000; /* Color for social icons */
+    margin: 0 10px; /* Adjust the spacing between social icons */
+    transition: color 0.3s;
+}
+
+.footer-socials a:hover {
+    color: #c98989; /* Change to your desired hover color */
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    /* Adjust styles for screens smaller than or equal to 768px */
+    header {
+        padding: 10px;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav a {
+        margin-bottom: 10px;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Adjust styles for screens smaller than or equal to 480px */
+    main {
+        padding: 10px;
+    }
+
+    .art-box img {
+        border-radius: 5px; /* Adjust the border-radius for smaller screens */
+    }
+}
